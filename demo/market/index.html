@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>铸衡智策 · 三维市场推演室</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        <svg viewBox="0 0 36 36" width="32" height="32" aria-hidden="true">
+          <rect width="36" height="36" rx="8" fill="#193f44" />
+          <g stroke="#eaf0db" stroke-width="2.3" fill="none">
+            <path d="m6 23 7-5 5 3 11-9M6 17l7-5 5 3 7-6M8 27l5-4 5 3 12-9" />
+          </g></svg
+        >铸衡智策
+      </div>
+      <span class="divider"></span><span>沙盘实验室</span>
+      <nav class="public-nav"><a href="../">知识与案例</a><a href="../../">返回官网</a></nav><div class="status" id="connection" role="status">读取推演场景</div>
+    </header>
+    <main>
+      <div class="intro">
+        <div>
+          <h1>钢材供应链<span>市场推演</span></h1>
+          <p>调整采购单价，追踪一批钢材从签单、发运到现金结算的过程。</p>
+        </div>
+        <small>合成场景 <i>／</i> 六主体规则推演</small>
+      </div>
+      <div class="workspace">
+        <section class="map" aria-label="模拟市场三维模型">
+          <div class="map-top">
+            <div class="map-title"><b></b>市场全景</div>
+            <button id="resetview" title="恢复初始相机">复位视角 ↺</button>
+          </div>
+          <div id="stage">
+            <div id="pins"></div>
+            <div id="world-status" role="status">正在加载 Blender 场景…</div>
+          </div>
+          <div class="map-info">
+            <span class="swatch"></span
+            ><span id="legend">拖动旋转 · 滚轮缩放 · 点击建筑查看账目</span>
+          </div>
+        </section>
+        <aside>
+          <div class="aside-heading">
+            <span class="kicker">市场干预</span
+            ><span class="daytag">第 1 天生效</span>
+          </div>
+          <h2>钢材采购价</h2>
+          <form id="priceform">
+            <label for="price">新签订单单价</label>
+            <div class="pricebox">
+              <span>¥</span
+              ><select id="price"><option value="5">5</option><option value="8">8</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13" selected>13</option><option value="15">15</option><option value="18">18</option><option value="20">20</option><option value="25">25</option><option value="30">30</option><option value="35">35</option><option value="40">40</option><option value="50">50</option><option value="80">80</option><option value="100">100</option></select><em>/ kg</em>
+            </div>
+            <p id="base-note">对照组沿用初始价格</p>
+            <div class="presets">
+              <button type="button" data-price="10">原价</button
+              ><button type="button" data-price="13">涨 30%</button
+              ><button type="button" data-price="40">压力价 ¥40</button>
+            </div>
+            <button class="run" id="run">
+              查看四天推演 <strong>→</strong>
+            </button>
+            <p id="runstatus" role="status" aria-live="polite"></p>
+          </form>
+          <div class="time">
+            <div class="time-head">
+              <b>逐日回看</b><button id="play" disabled>▷ 播放</button>
+            </div>
+            <div id="days"></div>
+          </div>
+        </aside>
+      </div>
+      <div class="report-head">
+        <div>
+          <h2>经营账本</h2>
+          <span id="asof">等待结算</span>
+        </div>
+        <div class="segmented" aria-label="选择实验组">
+          <button data-branch="baseline">原价对照</button
+          ><button data-branch="trial" aria-pressed="true">调价方案</button>
+        </div>
+      </div>
+      <section id="metrics" aria-label="已选方案的经营指标"></section>
+      <div class="detail">
+        <div class="tabs" aria-label="账本分类">
+          <button data-tab="orders">订单</button
+          ><button data-tab="logistics">物流</button
+          ><button data-tab="cash">现金流水</button>
+        </div>
+        <label class="filter"
+          >查看主体
+          <select id="actor">
+            <option value="">全部主体</option>
+          </select></label
+        >
+      </div>
+      <div id="evidence"></div>
+    </main>
+    <dialog id="order-detail" aria-labelledby="order-title">
+      <div class="dialog-head">
+        <h2 id="order-title">订单详情</h2>
+        <form method="dialog">
+          <button aria-label="关闭订单详情">关闭 ×</button>
+        </form>
+      </div>
+      <div id="order-body"></div>
+    </dialog>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
