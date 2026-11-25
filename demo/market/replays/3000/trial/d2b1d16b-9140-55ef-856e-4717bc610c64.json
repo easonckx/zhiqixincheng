@@ -1,0 +1,1 @@
+{"failures":0,"interpretation":"按给定联合冲击条件计算，频率依赖输入情景。","mode":"scenarios","p95_gap_cents":0,"runs":[{"cash_cents":[100000,100000,100000,100000],"gap_cents":0,"minimum_cash_cents":100000,"scenario":"原流水"},{"cash_cents":[100000,100000,100000,100000],"gap_cents":0,"minimum_cash_cents":100000,"scenario":"回款延迟"}],"samples":2,"seed":42,"status":"computed","worst_5pct_mean_gap_cents":0}
