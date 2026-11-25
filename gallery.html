@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>实践云展厅 · 智启新程</title><link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="brand.css"><link rel="stylesheet" href="type.css"><link rel="stylesheet" href="gallery.css">
+  <script defer src="gallery-collection.js"></script><script defer src="museum.js"></script>
+</head>
+<body class="museum-page">
+<header class="museum-header">
+  <a class="museum-brand" href="index.html"><img src="assets/logo.png" alt=""><span>实践云展厅<small>THE FIELD GALLERY</small></span></a>
+  <div><button id="map-toggle">展馆导览</button><button id="saved-toggle">收藏 <span id="saved-count">0</span></button><a href="index.html">返回官网 ↗</a></div>
+</header>
+<main class="museum-main">
+  <div class="gallery-heading"><h1 id="room-heading">现场选集</h1>
+    
+  </div>
+  <nav id="rooms" class="room-picker" aria-label="主题展区"></nav>
+  <section id="roam" aria-label="展厅空间">
+    <div class="room-viewport entered" id="room-viewport" tabindex="0" aria-label="拖动环顾，方向键移动，点选照片正面观看"><div class="room-atmosphere"></div><div class="scene" id="scene"><div class="museum-floor"></div><div class="museum-ceiling"><i></i><i></i><i></i></div><div class="wall back-wall"><div class="wall-title"><small>智启新程实践队</small><h2 id="wall-title">向新而行</h2><p id="wall-subtitle">从青年视角，走进中国智造</p></div><button class="wall-art main-art" data-art="0"><img alt=""><span class="art-plaque"><strong class="plaque-title"></strong><span class="plaque-note"></span></span></button></div><div class="wall left-wall"><button class="wall-art side-art" data-art="1"><img alt=""><span class="art-plaque"><strong class="plaque-title"></strong><span class="plaque-note"></span></span></button></div><div class="wall right-wall"><button class="wall-art side-art" data-art="2"><img alt=""><span class="art-plaque"><strong class="plaque-title"></strong><span class="plaque-note"></span></span></button></div><div class="rear-wall"></div><div class="bench"><span></span></div></div>
+      <div class="room-location"><span class="live-marker"></span><span id="location-label"></span></div>
+    </div>
+    <div class="roam-dock"><div id="roam-hint"><span>拖动环顾，点照片看正面</span><details class="mobile-room-note"><summary>展区导言</summary><p id="room-note-mobile"></p></details></div><div id="piece-label" hidden><div><strong id="piece-title"></strong><span id="piece-meta"></span></div><p id="piece-caption"></p><p id="piece-body"></p><div class="label-actions"><a id="diary">查看实践手记 ↗</a><button id="save-art"></button></div></div><button id="return-room" hidden>↶ 退回原视角</button><div class="walk-controls"><button data-walk="left" aria-label="向左转">↶</button><button data-walk="forward" aria-label="前进">↑</button><button data-walk="back" aria-label="后退">↓</button><button data-walk="right" aria-label="向右转">↷</button><button id="reset-view">复位</button></div></div>
+  </section>
+  <section class="exhibit-picker" aria-label="本区展品"><header><h2 id="strip-heading">浏览展墙</h2><div class="step-controls"><button id="prev" aria-label="上一件展品">←</button><output id="position"></output><button id="next" aria-label="下一件展品">→</button></div></header><div id="strip" class="photo-strip"></div></section>
+  <footer class="museum-footer"><span id="visit-progress"></span><button id="fullscreen">全屏参观 ⛶</button></footer>
+</main>
+<dialog id="directory" aria-labelledby="dialog-title"><button class="modal-close" aria-label="关闭">×</button><div class="directory-inner"><h2 id="dialog-title"></h2><div id="dialog-content"></div></div></dialog>
+<div class="toast" role="status"></div></body></html>

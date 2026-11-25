@@ -1,0 +1,377 @@
+// Station photographs and captions correspond to journey.html.
+const collection = [
+  {
+    "id": "stop-20",
+    "room": "production",
+    "title": "云枫汽车",
+    "meta": "哈尔滨 · 7月29日 · 汽车零部件调研",
+    "image": "assets/field/stop-20.webp",
+    "caption": "团队走访云枫汽车，观察生产工艺",
+    "body": "哈尔滨行程的最后一站是云枫汽车。相较于北京的整车制造基地，这里提供了地方零部件企业的视角。",
+    "stop": "stop-20",
+    "wallNote": "在哈尔滨的最后一站，我们把目光从整车转向了零部件。"
+  },
+  {
+    "id": "stop-12",
+    "room": "production",
+    "title": "小米汽车超级工厂",
+    "meta": "北京 · 7月25日 · 智能制造调研",
+    "image": "assets/field/stop-12.webp",
+    "caption": "团队在小米汽车超级工厂参观调研",
+    "body": "在汽车超级工厂，我们把观察对象从园区发展史缩小到一辆车的制造过程。",
+    "stop": "stop-12",
+    "wallNote": "走进小米汽车超级工厂，我们沿着一辆车的制造过程观察工序如何衔接。"
+  },
+  {
+    "id": "stop-08",
+    "room": "production",
+    "title": "北汽极狐园",
+    "meta": "北京 · 7月23日 · 汽车制造调研",
+    "image": "assets/field/stop-08.webp",
+    "caption": "团队在北汽开展新能源汽车制造调研",
+    "body": "这处整车研发制造基地，让团队有机会把前一天在门店提出的产品问题带回生产现场。",
+    "stop": "stop-08",
+    "wallNote": "从通州门店来到北汽极狐园，我们把前一天关于产品的问题带回了制造现场。"
+  },
+  {
+    "id": "stop-18",
+    "room": "production",
+    "title": "思哲睿智能医疗",
+    "meta": "哈尔滨 · 7月28日 · 医疗装备调研",
+    "image": "assets/field/stop-18.webp",
+    "caption": "团队在哈尔滨思哲睿开展医疗器械制造调研",
+    "body": "哈尔滨思哲睿智能医疗设备股份有限公司的手术机器人，为团队提供了高端医疗装备的观察场景。",
+    "stop": "stop-18",
+    "wallNote": "思哲睿的手术机器人，让我们在汽车之外看到精密制造的另一种用途。"
+  },
+  {
+    "id": "stop-19",
+    "room": "production",
+    "title": "中粮可口可乐（黑龙江）",
+    "meta": "哈尔滨 · 7月28日 · 生产管理调研",
+    "image": "assets/field/stop-19.webp",
+    "caption": "团队在中粮可口可乐饮料（黑龙江）有限公司调研",
+    "body": "饮料制造呈现出连续、标准化的生产特点。这里使团队得以将不同制造行业的质量管理放在一起比较。",
+    "stop": "stop-19",
+    "wallNote": "饮料生产线连续运转。我们在这里观察，工厂怎样让一批批产品保持相同的品质。"
+  },
+  {
+    "id": "stop-10",
+    "room": "innovation",
+    "title": "中关村展示中心",
+    "meta": "北京 · 7月24日 · 创新成果参访",
+    "image": "assets/field/stop-10.webp",
+    "caption": "团队在中关村展示中心参访调研",
+    "body": "这里从中关村创新发展历程切入，展示企业成长与前沿技术成果。",
+    "stop": "stop-10",
+    "wallNote": "沿着中关村的创新历程，我们从展品中寻找技术走向实际应用的线索。"
+  },
+  {
+    "id": "stop-04",
+    "room": "innovation",
+    "title": "中关村软件园",
+    "meta": "北京 · 7月22日 · 园区座谈",
+    "image": "assets/field/stop-04.webp",
+    "caption": "团队在中关村软件园参加园区服务座谈",
+    "body": "中关村软件园聚集软件企业和产业服务机构，也是观察数字技术如何找到制造业应用场景的窗口。",
+    "stop": "stop-04",
+    "wallNote": "在园区座谈中，我们关心的是，软件企业怎样找到车间里真正需要解决的问题。"
+  },
+  {
+    "id": "stop-05",
+    "room": "innovation",
+    "title": "中关村科学城规划展览馆",
+    "meta": "北京 · 7月22日 · 展馆参访",
+    "image": "assets/field/stop-05.webp",
+    "caption": "中关村科学城规划展览馆参访现场",
+    "body": "规划展览馆从空间布局呈现海淀创新资源的分布，让园区、科研机构与产业载体之间的关系更直观。",
+    "stop": "stop-05",
+    "wallNote": "展馆里的空间布局，把海淀的园区、科研机构和企业放在了同一张图上。"
+  },
+  {
+    "id": "stop-17",
+    "room": "innovation",
+    "title": "易智唯思",
+    "meta": "北京 · 7月27日 · 工业智能体访谈",
+    "image": "assets/field/stop-17.webp",
+    "caption": "团队在易智唯思交流工业智能体应用",
+    "body": "易智唯思智能科技有限公司提供了从人工智能研发到企业服务的实践样本。",
+    "stop": "stop-17",
+    "wallNote": "在易智唯思，话题从人工智能研发转向了工业智能体在企业里的用途。"
+  },
+  {
+    "id": "stop-13",
+    "room": "heritage",
+    "title": "首钢园",
+    "meta": "北京 · 7月26日 · 工业空间调研",
+    "image": "assets/field/stop-13.webp",
+    "caption": "团队在首钢园考察工业空间更新",
+    "body": "首钢园保留着传统钢铁工业的空间痕迹，也承接了新的文化、科技与公共活动。",
+    "stop": "stop-13",
+    "wallNote": "钢铁生产的痕迹依然可见。今天的首钢园也容纳了文化活动与公共生活。"
+  },
+  {
+    "id": "stop-07",
+    "room": "heritage",
+    "title": "清华园车站",
+    "meta": "北京 · 7月23日 · 工业遗存寻访",
+    "image": "assets/field/stop-07.webp",
+    "caption": "团队在清华园车站旧址参访",
+    "body": "清华园车站保留了铁路工业的历史线索。团队在走进现代汽车产线前，先从铁路交通的旧址看工业技术的来路。",
+    "stop": "stop-07",
+    "wallNote": "走进现代汽车工厂之前，我们先在清华园车站停了一站，回看铁路工业的历史。"
+  },
+  {
+    "id": "stop-07-2",
+    "room": "heritage",
+    "title": "清华园车站",
+    "meta": "北京 · 7月23日 · 工业遗存寻访",
+    "image": "assets/field/stop-07-2.webp",
+    "caption": "清华园车站旧址观察",
+    "body": "清华园车站保留了铁路工业的历史线索。团队在走进现代汽车产线前，先从铁路交通的旧址看工业技术的来路。",
+    "stop": "stop-07",
+    "wallNote": "这张照片记录了清华园车站旧址。留存的站房是这次寻访的观察对象。"
+  },
+  {
+    "id": "stop-07-3",
+    "room": "heritage",
+    "title": "清华园车站",
+    "meta": "北京 · 7月23日 · 工业遗存寻访",
+    "image": "assets/field/stop-07-3.webp",
+    "caption": "清华园车站展陈学习",
+    "body": "清华园车站保留了铁路工业的历史线索。团队在走进现代汽车产线前，先从铁路交通的旧址看工业技术的来路。",
+    "stop": "stop-07",
+    "wallNote": "从站房走进展陈，队员们继续了解清华园车站的铁路往事。"
+  },
+  {
+    "id": "stop-11",
+    "room": "heritage",
+    "title": "经开区区史馆“小红楼”",
+    "meta": "北京 · 7月25日 · 园区史调研",
+    "image": "assets/field/stop-11.webp",
+    "caption": "在北京经开区区史馆了解园区产业演进",
+    "body": "区史馆记录了北京经济技术开发区的建设历程，也是理解制造企业为何在此集聚的一处起点。",
+    "stop": "stop-11",
+    "wallNote": "北京经开区的建设历程，为理解汽车工厂为何集聚于此提供了一条线索。"
+  },
+  {
+    "id": "stop-11-2",
+    "room": "heritage",
+    "title": "经开区区史馆“小红楼”",
+    "meta": "北京 · 7月25日 · 园区史调研",
+    "image": "assets/field/stop-11-2.webp",
+    "caption": "经开区区史馆展陈现场",
+    "body": "区史馆记录了北京经济技术开发区的建设历程，也是理解制造企业为何在此集聚的一处起点。",
+    "stop": "stop-11",
+    "wallNote": "在“小红楼”的展陈里，我们把今天看到的制造园区放回它的发展历程中。"
+  },
+  {
+    "id": "stop-02",
+    "room": "dialogue",
+    "title": "陈新松",
+    "meta": "北京 · 7月20日 · 专家访谈",
+    "image": "assets/field/stop-02.webp",
+    "caption": "围绕航空增材制造开展的陈新松专访",
+    "body": "中国航空制造技术研究院研究员陈新松，从航空增材制造谈起，和我们讨论一项技术从研发走向工程应用所经历的验证。",
+    "stop": "stop-02",
+    "wallNote": "陈新松从航空增材制造谈起，讲到一项技术投入工程应用前要经历哪些验证。"
+  },
+  {
+    "id": "stop-03",
+    "room": "dialogue",
+    "title": "韩梦瑶",
+    "meta": "线上 · 7月21日 · 线上访谈",
+    "image": "assets/field/stop-03.webp",
+    "caption": "韩梦瑶线上访谈的会议录制封面",
+    "body": "韩梦瑶来自中国科学院地理科学与资源研究所。这次线上访谈把视角从单家工厂拉到产业空间和供应链。",
+    "stop": "stop-03",
+    "wallNote": "这张会议录制封面来自韩梦瑶的线上访谈。话题从一家工厂延伸到产业布局与供应链。"
+  },
+  {
+    "id": "stop-09",
+    "room": "dialogue",
+    "title": "中国社会科学院台湾研究所",
+    "meta": "北京 · 7月23日 · 专题访谈",
+    "image": "assets/field/stop-09.webp",
+    "caption": "在中国社会科学院台湾研究所开展专题访谈",
+    "body": "这一站从制造企业转向研究机构，访谈集中在两岸经贸联系与产业协作。",
+    "stop": "stop-09",
+    "wallNote": "在中国社会科学院台湾研究所，我们围绕两岸经贸联系和产业协作展开访谈。"
+  },
+  {
+    "id": "stop-15",
+    "room": "dialogue",
+    "title": "周雨",
+    "meta": "线上 · 7月26日 · 线上访谈",
+    "image": "assets/field/stop-15.webp",
+    "caption": "周雨线上访谈的会议录制封面",
+    "body": "华烁集团董事长周雨与团队在线交流，从企业经营的角度谈科技成果产业化与市场拓展。",
+    "stop": "stop-15",
+    "wallNote": "这张会议录制封面来自周雨的线上访谈。我们谈到科研成果怎样找到市场。"
+  },
+  {
+    "id": "stop-16",
+    "room": "dialogue",
+    "title": "丝路规划研究中心",
+    "meta": "北京 · 7月27日 · 国际合作座谈",
+    "image": "assets/field/stop-16.webp",
+    "caption": "团队在丝路规划研究中心交流国际产业合作",
+    "body": "在丝路规划研究中心，团队从国际产业合作的角度观察中国制造走向海外的过程。",
+    "stop": "stop-16",
+    "wallNote": "在丝路规划研究中心，我们从国际合作的角度讨论中国制造怎样走向海外。"
+  },
+  {
+    "id": "stop-06",
+    "room": "connection",
+    "title": "极狐中心北京通州店",
+    "meta": "北京 · 7月22日 · 终端访谈",
+    "image": "assets/field/stop-06.webp",
+    "caption": "实践队在极狐中心通州店进行产品服务访谈",
+    "body": "在新能源汽车销售与服务终端，制造业价值链呈现为消费者能够直接接触的产品、讲解与服务。",
+    "stop": "stop-06",
+    "wallNote": "在通州门店，我们从产品讲解和售后服务看一辆车怎样抵达用户。"
+  },
+  {
+    "id": "stop-01",
+    "room": "connection",
+    "title": "汽车市场形势分析会",
+    "meta": "北京 · 7月18日至19日 · 会议观察",
+    "image": "assets/field/stop-01.webp",
+    "caption": "团队参加宏观经济及汽车市场形势分析会",
+    "body": "这次由国家信息中心组织的形势分析会，是团队调研的第一站。连续两天的议程，把汽车市场放进了更大的宏观经济背景。",
+    "stop": "stop-01",
+    "wallNote": "实践从一场汽车市场形势分析会开始。之后的走访，带着会上留下的需求问题。"
+  },
+  {
+    "id": "stop-14",
+    "room": "connection",
+    "title": "施坦威之家北京",
+    "meta": "北京 · 7月26日 · 高端制造调研",
+    "image": "assets/field/stop-14.webp",
+    "caption": "团队在施坦威之家开展钢琴工艺与体验调研",
+    "body": "钢琴提供了与汽车不同的制造样本：材料、工艺与演奏体验共同影响人们对品质的判断。",
+    "stop": "stop-14",
+    "wallNote": "在施坦威之家，我们把钢琴的材料和制作工艺，与演奏者感受到的品质放在一起看。"
+  },
+  {
+    "id": "innovation",
+    "room": "innovation",
+    "title": "中关村展示中心",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/innovation.webp",
+    "caption": "在创新策源地，与未来相遇",
+    "body": "智启新程实践队赴中关村展示中心参观调研。以现场观察为起点，我们关注研发突破、技术供给与产业应用之间的连接。",
+    "wallNote": "在中关村展示中心，团队从创新成果展陈中了解技术研发与产业应用的联系。"
+  },
+  {
+    "id": "tech-space",
+    "room": "innovation",
+    "title": "科技展陈 · 实践影像",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/tech-space.webp",
+    "caption": "技术，在展陈中变得具体",
+    "body": "从展示空间到具体展品，实践影像保留了团队接触新技术的场景。展墙把全景与细节并置，帮助我们理解抽象的产业议题。",
+    "wallNote": "这是调研途中的科技展陈。与展品面对面，讨论便有了具体的对象。"
+  },
+  {
+    "id": "robot",
+    "room": "innovation",
+    "title": "机器人展品 · 实践影像",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/robot.webp",
+    "caption": "从一个细节，理解技术的可能",
+    "body": "镜头聚焦机器人手部展品。技术不只存在于概念中，也体现为可以观察的结构、动作与应用场景。",
+    "wallNote": "镜头停在机器人的手部。指节与关节的结构，是观察它如何完成动作的起点。"
+  },
+  {
+    "id": "production",
+    "room": "production",
+    "title": "云枫汽车",
+    "meta": "哈尔滨 · 7月29日 · 汽车零部件调研",
+    "image": "assets/gallery/production.webp",
+    "caption": "队员戴着安全帽走进云枫汽车车间",
+    "body": "沿着车间通道，队员边听讲解边观察工序。这一站的关注点从整车装配转向零部件制造。",
+    "stop": "stop-20",
+    "wallNote": "在北京看过整车制造后，我们来到哈尔滨，沿着云枫汽车的车间通道听讲解、看工序。"
+  },
+  {
+    "id": "line",
+    "room": "production",
+    "title": "汽车制造生产线",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/line.webp",
+    "caption": "沿着生产线，看见制造的秩序",
+    "body": "车身、设备与作业空间共同构成生产线的现场。照片提供了一种观察制造系统的视角：从产品向流程、工艺和组织延伸。",
+    "wallNote": "车身、设备和工位同在一个画面里。沿着车身排列的方向，可以读出产线的空间次序。"
+  },
+  {
+    "id": "factory-visit",
+    "room": "production",
+    "title": "汽车工厂 · 实践记录",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/factory-visit.webp",
+    "caption": "在现场听，也在现场问",
+    "body": "实践队员在车间环境中听取介绍。现场观察与提问相互补充，将宏观的产业话题转化为具体的问题。",
+    "wallNote": "队员在车间听取介绍，把眼前的设备和正在了解的工序一一对应。"
+  },
+  {
+    "id": "dialogue",
+    "room": "dialogue",
+    "title": "中关村产业园 · 主题座谈",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/dialogue.webp",
+    "caption": "让不同视角，坐到同一张桌前",
+    "body": "在中关村产业园的座谈中，团队围绕软件如何进入制造现场、青年人才参与创新的方式，以及首都制造产业布局展开交流。",
+    "wallNote": "在中关村产业园，队员与园区围坐交流，谈软件应用，也谈青年人才如何参与制造业创新。"
+  },
+  {
+    "id": "notes",
+    "room": "dialogue",
+    "title": "座谈记录 · 实践影像",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/notes.webp",
+    "caption": "把问题与回答，认真留下",
+    "body": "一份现场记录，把交流转化为后续研究的起点。我们把观察、受访者表述与有待核实的判断分开整理。",
+    "wallNote": "座谈中的笔记留下了问题与回答，也让团队在走访结束后能回到当时的讨论。"
+  },
+  {
+    "id": "silk-road",
+    "room": "dialogue",
+    "title": "丝路规划研究中心 · 访谈",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/silk-road.webp",
+    "caption": "从产业现场，望向开放协同",
+    "body": "团队与丝路规划研究中心交流，关注制造企业如何在开放合作中连接技术和市场。",
+    "wallNote": "丝路规划研究中心的访谈，把工厂里的问题延伸到海外市场与产业合作。"
+  },
+  {
+    "id": "connection",
+    "room": "connection",
+    "title": "三链协同研究框架",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/connection.webp",
+    "caption": "把观察，连接为研究框架",
+    "body": "研究框架以创新链、生产链和价值链的联动为主线，纳入开放协同与区域协同。它用于组织研究问题，不代表已得到验证的因果结论。",
+    "wallNote": "团队用这张图整理创新、生产和价值三条链，追问门店里的需求怎样传回车间和研发端。"
+  },
+  {
+    "id": "product",
+    "room": "connection",
+    "title": "汽车展品 · 实践影像",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/product.webp",
+    "caption": "产品体验，是理解价值的一扇窗",
+    "body": "团队围绕汽车座舱展品听取介绍。展品把技术方案、制造能力与使用体验放在同一个观察场景中。",
+    "wallNote": "围着汽车座舱听讲解时，我们从乘坐者的位置重新看车里的设计。"
+  },
+  {
+    "id": "mechanics",
+    "room": "connection",
+    "title": "机械结构 · 实践影像",
+    "meta": "实践队馆藏",
+    "image": "assets/gallery/mechanics.webp",
+    "caption": "在结构之间，寻找连接",
+    "body": "照片记录了汽车机械结构的细节。通过观察具体的零部件与装配关系，可以进一步追问产品背后的技术积累和生产协作。",
+    "wallNote": "镜头拉近汽车的机械结构，让原本藏在整车里的部件与装配关系显露出来。"
+  }
+];
