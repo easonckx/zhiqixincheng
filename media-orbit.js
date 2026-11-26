@@ -27,6 +27,15 @@
   function select(index) {
     clearTimeout(dwell);
     if(index === selected) return;
+    // Keep the entry footprint in page coordinates, independent of the
+    // animated node. The label is clickable even outside the circle.
+    entryBounds = mouseSelection && index >= 0
+      ? [nodes[index], nodes[index].querySelector('span')].map(el => {
+          const r = el.getBoundingClientRect();
+          return {left:r.left+scrollX, right:r.right+scrollX, top:r.top+scrollY, bottom:r.bottom+scrollY};
+        })
+      : [];
+    returning = index < 0 && !motion.matches;
     selected = index;
     cancelAnimationFrame(frame);
     overview.hidden = index >= 0;
@@ -52,12 +61,17 @@
       });
       paint(t===1 ? end : points);
       if(t<1) frame=requestAnimationFrame(draw);
-      else checkHover();
+      else {returning = false;checkHover();}
     }
     frame=requestAnimationFrame(draw);
   }
   let hoveredNode = null, returnTimer = 0, mouseSelection = false;
-  let pointer = null;
+  let pointer = null, entryBounds = [], returning = false;
+  function atEntry(){
+    if(!pointer)return false;
+    const x = pointer.x+scrollX, y = pointer.y+scrollY;
+    return entryBounds.some(r => x >= r.left && x <= r.right && y >= r.top && y <= r.bottom);
+  }
   function cancelReturn(){
     clearTimeout(returnTimer);
     returnTimer = 0;
@@ -67,16 +81,16 @@
   }
   function keepsDetail(target){
     return target && (nodes[selected]?.contains(target) ||
-      layout.contains(target) && target.closest('.media-copy a, .orbit-reset'));
+      layout.contains(target) && target.closest('.media-copy article, .orbit-reset'));
   }
   function checkHover(){
     if(!mouseSelection || selected < 0)return;
-    if(keepsDetail(currentTarget())){
+    if(atEntry() || keepsDetail(currentTarget())){
       cancelReturn();
     }else if(!returnTimer){
       returnTimer = setTimeout(() => {
         returnTimer = 0;
-        if(mouseSelection && selected >= 0 && !keepsDetail(currentTarget())){
+        if(mouseSelection && selected >= 0 && !atEntry() && !keepsDetail(currentTarget())){
           hoveredNode = null;
           select(-1);
         }
@@ -89,6 +103,12 @@
     if(event.pointerType !== 'mouse')return;
     if(pointer && pointer.x===event.clientX && pointer.y===event.clientY)return;
     pointer = {x:event.clientX,y:event.clientY};
+    if(returning)return;
+    if(atEntry()){
+      cancelReturn();
+      return;
+    }
+    entryBounds = [];
     const node = event.target.closest('.orbit-node');
     if(node !== hoveredNode){
       clearTimeout(dwell);
@@ -107,6 +127,7 @@
     clearTimeout(dwell);
     hoveredNode = null;
     pointer = null;
+    entryBounds = [];
     checkHover();
   });
   // Scrolling can move the page beneath an idle pointer as well.
@@ -125,6 +146,7 @@
     clearTimeout(dwell);
     cancelReturn();
     mouseSelection = false;
+    entryBounds = [];
   },true);
   layout.addEventListener('focusout',event => {
     if(!mouseSelection && !layout.contains(event.relatedTarget))select(-1);
