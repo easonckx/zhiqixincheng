@@ -1,0 +1,29 @@
+#intro,#intro::backdrop,#intro .intro-stage{background:rgb(248,248,245)}
+#intro .intro-stage{position:relative;overflow:hidden;animation:none}
+#intro video{position:absolute;top:50%;left:50%;width:clamp(680px,100vw,1600px);max-width:none;height:auto;transform:translate(-50%,-50%)}
+#intro button{min-height:44px;z-index:1}
+.press-desk{display:grid;grid-template-columns:minmax(190px,.65fr) minmax(0,2fr);gap:clamp(28px,5vw,90px);border-bottom:1px solid var(--line)}
+.press-heading .text-action{display:inline-block;margin-top:19px;font-size:15px}
+.press-list article{padding:23px 0;border-top:1px solid var(--line)}
+.press-list article:first-child{border-top:2px solid var(--deep);padding-top:18px}
+.press-list article:last-child{padding-bottom:0}
+.press-byline{display:flex;align-items:center;gap:16px;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.press-byline span{color:var(--blue);font-weight:600}
+.press-list h3,.media-grid h3,.media-foot h3{margin:9px 0 7px;line-height:1.4;font-weight:600}
+.press-list h3{font-size:clamp(19px,1.55vw,28px)}
+.press-list h3 a:hover,.press-list h3 a:focus-visible{text-decoration:underline;text-underline-offset:4px}
+.press-list h3 span{color:var(--blue);white-space:nowrap}
+.press-list p,.media-heading p,.media-grid p,.media-foot p{margin:0;color:var(--muted);line-height:1.8}
+.media-desk{background:#f4f6f8}
+.media-heading p{margin-top:14px}
+.media-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(18px,2.4vw,44px);margin-top:30px}
+.media-photo{aspect-ratio:1.74;overflow:hidden;background:#dde5e9}
+.media-photo img{display:block;width:100%;height:100%;object-fit:cover}
+.media-grid h3{margin-top:16px;font-size:clamp(23px,1.85vw,32px)}
+.media-foot{display:flex;gap:18px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding-top:20px;margin-top:35px}
+.media-foot h3{font-size:22px}.media-foot a{flex:none}
+@media(max-width:1050px){.media-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:740px){.press-desk{grid-template-columns:1fr;gap:20px}.press-heading{display:flex;align-items:center;justify-content:space-between;gap:12px}.press-heading .text-action{margin:0}.media-foot{align-items:flex-start;flex-direction:column}}
+@media(max-width:540px){.media-grid{grid-template-columns:1fr;gap:27px}.media-grid h3{margin-top:11px}.media-photo{aspect-ratio:2.35}}
+
+.media-photo.column-mark{background:white;border:1px solid #dce4ea}.column-mark img{object-fit:contain;padding:clamp(13px,2.3vw,40px)}
