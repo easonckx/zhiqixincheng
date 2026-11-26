@@ -11,7 +11,7 @@
   // brings the chosen corner to the left while preserving the circular order.
   const rest = [[50,20,1],[78,72,1],[22,72,1]];
   const focused = [[32,52,1.43],[79,25,.71],[79,75,.71]];
-  let positions = rest, selected = -1, frame = 0, busy = false, dwell = 0;
+  let positions = rest, selected = -1, frame = 0, dwell = 0;
   function paint(points) {
     positions = points;
     nodes.forEach((node,i) => {
@@ -34,7 +34,7 @@
     reset.hidden = index < 0;
     nodes.forEach((node,i) => node.setAttribute('aria-pressed',String(i === index)));
     const start = positions, end = index < 0 ? rest : nodes.map((_,i) => focused[(i-index+3)%3]);
-    if(motion.matches){busy=false;paint(end);return;}
+    if(motion.matches){paint(end);return;}
     const now = performance.now();
     // Move all three corners around the same pivot and in the same direction.
     const angle = p => Math.atan2(p[1]-52,p[0]-52);
@@ -44,7 +44,6 @@
       let a = angle(end[i])-angle(p);
       return a + 2*Math.PI*Math.round((turn-a)/(2*Math.PI));
     });
-    busy = true;
     function draw(time) {
       const t = Math.min(1,(time-now)/480), k = 1-(1-t)**3;
       const points = start.map((p,i) => {
@@ -53,16 +52,57 @@
       });
       paint(t===1 ? end : points);
       if(t<1) frame=requestAnimationFrame(draw);
-      else busy=false;
     }
     frame=requestAnimationFrame(draw);
   }
+  let hoveredNode = null, returnTimer = 0, mouseSelection = false;
+  function cancelReturn(){
+    clearTimeout(returnTimer);
+    returnTimer = 0;
+  }
+  function scheduleReturn(){
+    if(selected < 0 || !mouseSelection || returnTimer)return;
+    returnTimer = setTimeout(() => {
+      returnTimer = 0;
+      select(-1);
+    },350);
+  }
+  // Track pointer movement so that rotating a node away from a stationary
+  // cursor never dismisses the description the visitor has just opened.
+  layout.addEventListener('pointermove',event => {
+    if(event.pointerType !== 'mouse')return;
+    const node = event.target.closest('.orbit-node');
+    if(node !== hoveredNode){
+      clearTimeout(dwell);
+      hoveredNode = node;
+      if(node) dwell = setTimeout(() => {
+        mouseSelection = true;
+        select(nodes.indexOf(node));
+      },130);
+    }
+    if(node || event.target.closest('.media-copy'))cancelReturn();
+    else scheduleReturn();
+  });
+  layout.addEventListener('pointerleave',event => {
+    if(event.pointerType !== 'mouse')return;
+    clearTimeout(dwell);
+    hoveredNode = null;
+    scheduleReturn();
+  });
+  layout.addEventListener('keydown',() => {
+    clearTimeout(dwell);
+    cancelReturn();
+    mouseSelection = false;
+  },true);
+  layout.addEventListener('focusout',event => {
+    if(!mouseSelection && !layout.contains(event.relatedTarget))select(-1);
+  });
   nodes.forEach((node,i) => {
-    node.addEventListener('click',() => select(i));
-    node.addEventListener('pointerenter',event => {
-      if(event.pointerType==='mouse' && !busy) dwell=setTimeout(() => select(i),130);
+    node.addEventListener('click',event => {
+      cancelReturn();
+      mouseSelection = event.pointerType === 'mouse';
+      select(i);
     });
-    node.addEventListener('pointerleave',() => clearTimeout(dwell));
     node.addEventListener('keydown',event => {
       if(!['ArrowLeft','ArrowRight'].includes(event.key))return;
       event.preventDefault();
