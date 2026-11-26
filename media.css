@@ -1,6 +1,6 @@
 #intro,#intro::backdrop,#intro .intro-stage{background:rgb(248,248,245)}
 #intro .intro-stage{position:relative;overflow:hidden;animation:none}
-#intro video{position:absolute;top:50%;left:50%;width:clamp(680px,100vw,1600px);max-width:calc(74dvh * 16 / 9);height:auto;transform:translate(-50%,-50%)}
+#intro :is(video,.intro-lockup){position:absolute;top:50%;left:50%;width:clamp(680px,100vw,1600px);max-width:calc(74dvh * 16 / 9);height:auto;transform:translate(-50%,-50%)}
 #intro button{min-height:44px;z-index:1}
 .press-desk{display:grid;grid-template-columns:minmax(190px,.65fr) minmax(0,2fr);gap:clamp(28px,5vw,90px);border-bottom:1px solid var(--line)}
 .press-heading .text-action{display:inline-block;margin-top:19px;font-size:15px}
@@ -65,3 +65,5 @@
  @supports (interpolate-size:allow-keywords){.news-more{interpolate-size:allow-keywords}.news-more::details-content{block-size:0;overflow:hidden;transition:block-size .32s ease,content-visibility .32s allow-discrete}.news-more[open]::details-content{block-size:auto}}
 }
 @media(max-width:740px){.news-columns{grid-template-columns:1fr;gap:28px}.news-column>h3{margin:14px 0}.news-column article{padding:14px 0 15px}}
+
+#intro .intro-team-name{font-size:clamp(28px,5vw,64px);color:#132c4b;font-weight:650}

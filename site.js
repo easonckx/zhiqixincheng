@@ -20,42 +20,62 @@ shots.forEach((button,index) => button.addEventListener('click', () => {
 (() => {
   const intro=document.querySelector('#intro'), film=window.teamIntroVideo;
   if(!film)return;
-  const root=document.documentElement, skip=intro.querySelector('button');
-  const remaining=window.teamIntroDeadline-performance.now();
-  root.classList.remove('intro-pending');
-  if(remaining<550 || document.hidden)return;
-  intro.querySelector('.intro-stage').prepend(film);
+  const stage=intro.querySelector('.intro-stage'), skip=intro.querySelector('button');
+  document.documentElement.classList.remove('intro-pending');
+  if(document.hidden)return;
+  const still=new Image();
+  still.className='intro-lockup';
+  still.alt='智启新程实践队';
+  still.src='assets/web/team-lockup.webp';
+  stage.prepend(film);
   intro.showModal();
-  try { sessionStorage.setItem('zq-team-film-v2','1'); } catch {}
-  let exiting=false;
+  try { sessionStorage.setItem('zq-team-film-v3','1'); } catch {}
   const motion=matchMedia('(prefers-reduced-motion: reduce)');
+  let timer, exiting=false, showingStill=false, lastTime=-1;
   const finish=()=>{if(intro.open)intro.close()};
   function leave(){
     if(exiting || !intro.open)return;
     exiting=true;
+    clearTimeout(timer);
     intro.classList.add('leaving');
-    setTimeout(finish,165);
+    timer=setTimeout(finish,165);
   }
-  const startup=setTimeout(leave,700);
-  const limit=setTimeout(leave,Math.max(0,remaining-165));
-  function checkFrame(){
-    if(exiting || !intro.open)return;
-    if(film.duration-film.currentTime<=.16){leave();return;}
-    if(film.requestVideoFrameCallback)film.requestVideoFrameCallback(checkFrame);
+  function showLockup(){
+    if(exiting || showingStill || !intro.open)return;
+    showingStill=true;
+    clearTimeout(timer);
+    film.pause();
+    if(still.complete && still.naturalWidth){
+      film.replaceWith(still);
+    }else{
+      const name=document.createElement('strong');
+      name.className='intro-team-name';
+      name.textContent='智启新程实践队';
+      film.replaceWith(name);
+    }
+    timer=setTimeout(leave,1000);
   }
-  film.addEventListener('playing',()=>{clearTimeout(startup);checkFrame()},{once:true});
-  film.addEventListener('timeupdate',()=>{if(film.duration-film.currentTime<=.16)leave()});
-  film.addEventListener('error',leave,{once:true});
+  function watchProgress(){
+    if(exiting || showingStill || !intro.open || lastTime===film.currentTime)return;
+    lastTime=film.currentTime;
+    clearTimeout(timer);
+    timer=setTimeout(showLockup,2500);
+  }
+  // The media timeline includes the final logo hold. Loading time is separate.
+  film.addEventListener('timeupdate',watchProgress);
   film.addEventListener('ended',leave,{once:true});
+  film.addEventListener('error',showLockup,{once:true});
   skip.addEventListener('click',leave,{once:true});
   intro.addEventListener('cancel',e=>{e.preventDefault();leave()});
   window.addEventListener('pagehide',finish,{once:true});
   motion.addEventListener('change',leave);
   intro.addEventListener('close',()=>{
-    clearTimeout(startup);clearTimeout(limit);film.pause();
+    clearTimeout(timer);
+    film.pause();
     window.removeEventListener('pagehide',finish);motion.removeEventListener('change',leave);
   },{once:true});
-  film.play().catch(leave);
+  watchProgress();
+  film.play().catch(showLockup);
 })();
 
 if(location.hash==='#about')document.querySelector('#main').scrollIntoView();

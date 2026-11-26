@@ -12,20 +12,19 @@ html.intro-pending::before{content:"";position:fixed;inset:0;background:#f8f8f5;
 <script>
 (() => {
   try {
-    if(location.hash || !HTMLDialogElement.prototype.showModal || matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData || sessionStorage.getItem('zq-team-film-v2'))return;
+    if(location.hash || !HTMLDialogElement.prototype.showModal || matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData || sessionStorage.getItem('zq-team-film-v3'))return;
     const video=document.createElement('video');
     video.muted=true;video.playsInline=true;video.preload='auto';
     video.setAttribute('aria-hidden','true');
     video.poster='assets/web/team-first.webp';
-    video.src='assets/web/team-intro.mp4';
+    video.src='assets/web/team-intro.mp4?v=full3';
     window.teamIntroVideo=video;
     document.documentElement.classList.add('intro-pending');
-    window.teamIntroDeadline=performance.now()+3200;
   } catch {}
 })();
 </script>
 
-  <link rel="icon" href="assets/logo.png"><link rel="preload" as="image" href="assets/web/assembly.webp"><link rel="stylesheet" href="home.css?v=intro3"><link rel="stylesheet" href="type.css"><link rel="stylesheet" href="stories.css"><link rel="stylesheet" href="media.css?v=orbit-stack"><script defer src="common.js?v=film2"></script><script defer src="site.js?v=intro2"></script><script defer src="media-orbit.js?v=hover5"></script>
+  <link rel="icon" href="assets/logo.png"><link rel="preload" as="image" href="assets/web/assembly.webp"><link rel="stylesheet" href="home.css?v=intro3"><link rel="stylesheet" href="type.css"><link rel="stylesheet" href="stories.css"><link rel="stylesheet" href="media.css?v=full-intro3"><script defer src="common.js?v=film2"></script><script defer src="site.js?v=full-intro3"></script><script defer src="media-orbit.js?v=hover5"></script>
 </head>
 <body class="home-page">
 <dialog id="intro" aria-label="智启新程实践队开屏"><div class="intro-stage"><button type="button">跳过开屏 <span aria-hidden="true">→</span></button></div></dialog>
