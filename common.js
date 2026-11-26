@@ -13,7 +13,7 @@ document.querySelectorAll('[data-film]').forEach(link=>link.addEventListener('cl
   event.preventDefault();
   const id=link.dataset.film;
   document.querySelector('#player-title').textContent=filmTitles[id];
-  video.setAttribute('aria-label',filmTitles[id]);video.poster='assets/web/'+id+'-film.webp';video.src=link.href;
+  video.setAttribute('aria-label',filmTitles[id]);video.poster='assets/web/'+id+'-film.webp'+(id==='product'?'?v=brand2':'');video.src=link.href;
   playError.hidden=true;playError.querySelector('a').href=link.href;player.showModal();video.play().catch(()=>{});
 }));
 video.addEventListener('error',()=>{if(player.open)playError.hidden=false});

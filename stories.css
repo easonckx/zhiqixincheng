@@ -19,3 +19,5 @@ h1,h2,.identity strong,.films h3,.diary-picks strong,.product-lead{font-family:v
 @media(prefers-reduced-motion:reduce){.intro-stage,.intro-mark,.intro-mark:after,.showcase-hero figure img,.feature-panel:not([hidden]) .product-screen{animation:none}}
 
 .field-images figcaption .field-gallery-link{display:inline-block;margin-left:.6em;color:#235274;text-decoration:underline;text-underline-offset:3px}
+
+.stop-story .expert-role{color:#254c67;font-size:clamp(16px,1.3vw,22px);line-height:1.55;font-weight:600;margin:8px 0 16px}.stop-index .toc-role,[data-stop] .toc-role{display:block;color:#4d6474;font-size:.86em;line-height:1.45;margin-bottom:2px}

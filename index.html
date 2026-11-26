@@ -5,15 +5,35 @@
   <meta name="theme-color" content="#132c4b">
   <meta name="description" content="对外经济贸易大学智启新程实践队的制造业调研日程、实践影像、云展厅与铸衡智策决策推演工作台。">
   <title>智启新程实践队 · 中国智造现场</title>
-  <link rel="icon" href="assets/logo.png"><link rel="preload" as="image" href="assets/web/assembly.webp"><link rel="stylesheet" href="home.css"><link rel="stylesheet" href="type.css"><link rel="stylesheet" href="stories.css"><link rel="stylesheet" href="media.css"><script defer src="common.js"></script><script defer src="site.js"></script>
+  <style>
+html.intro-pending::before{content:"";position:fixed;inset:0;background:#f8f8f5;z-index:2147483646;pointer-events:none;animation:intro-release .18s 3s forwards}
+@keyframes intro-release{to{opacity:0;visibility:hidden}}
+</style>
+<script>
+(() => {
+  try {
+    if(location.hash || !HTMLDialogElement.prototype.showModal || matchMedia('(prefers-reduced-motion: reduce)').matches || navigator.connection?.saveData || sessionStorage.getItem('zq-team-film-v2'))return;
+    const video=document.createElement('video');
+    video.muted=true;video.playsInline=true;video.preload='auto';
+    video.setAttribute('aria-hidden','true');
+    video.poster='assets/web/team-first.webp';
+    video.src='assets/web/team-intro.mp4';
+    window.teamIntroVideo=video;
+    document.documentElement.classList.add('intro-pending');
+    window.teamIntroDeadline=performance.now()+3200;
+  } catch {}
+})();
+</script>
+
+  <link rel="icon" href="assets/logo.png"><link rel="preload" as="image" href="assets/web/assembly.webp"><link rel="stylesheet" href="home.css"><link rel="stylesheet" href="type.css"><link rel="stylesheet" href="stories.css"><link rel="stylesheet" href="media.css?v=orbit1"><script defer src="common.js?v=film2"></script><script defer src="site.js?v=intro2"></script><script defer src="media-orbit.js"></script>
 </head>
 <body class="home-page">
-<dialog id="intro" aria-label="智启新程实践队开屏"><div class="intro-stage"><video muted playsinline webkit-playsinline preload="none" aria-hidden="true"></video><button type="button">跳过开屏 <span aria-hidden="true">→</span></button></div></dialog>
+<dialog id="intro" aria-label="智启新程实践队开屏"><div class="intro-stage"><button type="button">跳过开屏 <span aria-hidden="true">→</span></button></div></dialog>
 <a class="skip" href="#main">跳至正文</a>
 <header class="mast">
   <a class="identity" href="index.html" aria-label="智启新程实践队首页"><img src="assets/web/brand.png" alt=""><strong>智启新程实践队</strong></a>
   <button id="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">菜单 <span aria-hidden="true">☰</span></button>
-  <nav id="site-menu" aria-label="主导航"><a href="journey.html">实践日程</a><a href="product.html">产品介绍</a><a data-film="product" href="assets/web/product-film.mp4">产品宣传片</a><a data-film="theme" href="assets/team-film.mp4">实践主题篇</a><a data-film="field" href="assets/web/field-film.mp4">实践纪实片</a><a href="#media">媒体传播</a></nav>
+  <nav id="site-menu" aria-label="主导航"><a href="journey.html">实践日程</a><a href="product.html">产品介绍</a><a data-film="product" href="assets/web/product-film.mp4?v=brand2">产品宣传片</a><a data-film="theme" href="assets/team-film.mp4">实践主题篇</a><a data-film="field" href="assets/web/field-film.mp4">实践纪实片</a><a href="#media">媒体传播</a></nav>
   <div class="mast-actions"><a href="gallery.html">云展厅 <span aria-hidden="true">↗</span></a><a class="product-link" href="demo/" data-product>进入产品 <span aria-hidden="true">↗</span></a></div>
 </header>
 <main id="main">
@@ -39,6 +59,7 @@
       <article><div class="press-byline"><time datetime="2026-08-25">2026.08.25</time><span>齐鲁晚报·齐鲁壹点</span></div>
         <h3><a href="https://www.ql1d.com/general/28023778.html" target="_blank" rel="noopener">八日十站，智启新程——“智启新程”实践队赴北京、哈尔滨开展智能制造与高水平对外开放实践调研<span aria-hidden="true"> ↗</span></a></h3>
         <p>从中关村到亦庄，再到哈尔滨的制造车间。这篇行程报道串起座谈和走访，记录队员如何沿着一条产业链追问技术、生产与市场的关系。</p></article>
+      <article><div class="press-byline"><span>微信推送</span></div><h3><a href="https://mp.weixin.qq.com/s/iaVNFRBHk9yqwUBpVx-aGw" rel="noopener" target="_blank">实践风采｜访智能制造一线，观首都科创脉动——“智启新程”实践队在京开展实践调研<span aria-hidden="true"> ↗</span></a></h3></article>
     </div>
   </section>
 
@@ -47,21 +68,21 @@
   <section id="product" class="product-block" aria-labelledby="product-title">
     <div class="product-copy"><p class="section-label">产品介绍</p><h2 id="product-title">铸衡智策</h2><p class="product-lead">把一个经营问题，放进市场里推演。</p>
     <p>从企业资料中寻找依据，让采购、生产、资金等专家共同分析。进入三维市场调整钢材价格，观察订单、物流与现金的变化。</p>
-    <a class="action blue" href="product.html">探索产品功能 <span aria-hidden="true">↗</span></a><a class="plain-link" data-film="product" href="assets/web/product-film.mp4">观看产品宣传片 <span aria-hidden="true">↓</span></a></div>
+    <a class="action blue" href="product.html">探索产品功能 <span aria-hidden="true">↗</span></a><a class="plain-link" data-film="product" href="assets/web/product-film.mp4?v=brand2">观看产品宣传片 <span aria-hidden="true">↓</span></a></div>
     <figure><img loading="lazy" width="1700" height="956" src="assets/web/product.webp" alt="铸衡智策三维市场中的厂房、仓库、货运道路和港口"><figcaption>铸衡智策 · 三维市场全景</figcaption></figure>
   </section>
 
   <section class="section media-desk" id="media" aria-labelledby="media-title">
-    <div class="media-heading"><h2 id="media-title">媒体传播</h2><p>在智启新程实践队的微信公众号里，沿着四个栏目读京哈调研。</p></div>
-    <div class="media-grid">
-      <article><div class="media-photo column-mark"><img loading="lazy" src="assets/web/column-journal.webp" alt="智行记栏目标识"></div>
-        <h3>智行记</h3><p>跟着队员的脚步读现场。把同一天的园区参访、企业走访和交流连起来，看课本上的“产业链”怎样变成眼前的人、技术和产品。</p></article>
-      <article><div class="media-photo column-mark"><img loading="lazy" src="assets/web/column-interviews.webp" alt="向新而谈栏目标识"></div>
-        <h3>向“新”而谈</h3><p>把时间留给一个人和一个问题。与陈新松聊航空增材制造，与易智唯思创始人姚驰聊工业智能体，让受访者讲清技术落地时遇到的具体难题。</p></article>
-      <article><div class="media-photo"><img loading="lazy" src="assets/web/walk.webp" alt="实践队成员走访工厂"></div>
-        <h3>每日行程心得</h3><p>同一场走访，不同专业的队员会注意到什么？一天结束后，大家写下印象深的细节、现场追问和发生改变的判断，留下个人视角的实践手记。</p></article>
-      <article><div class="media-photo column-mark"><img loading="lazy" src="assets/web/column-keywords.webp" alt="制造关键词栏目标识"></div>
-        <h3>制造关键词</h3><p>从车间里的现象讲懂一个词：数字孪生怎样映射生产线，柔性制造怎样适应不同订单，智能检测又怎样发现缺陷。</p></article>
+    <div class="media-heading"><h2 id="media-title">媒体传播</h2></div>
+    <div class="media-layout">
+      <div class="media-copy">
+        <div aria-live="polite" aria-atomic="true"><div class="media-overview"><h3>一场走访，三种读法。</h3><p>《智行记》记下走访时的发现，《向“新”而谈》带着问题找专家，《制造关键词》把访谈中的概念讲清楚，再带回现场对照。</p></div><article id="column-journal"><h3>智行记</h3><p><strong>在现场发现问题。</strong>跟着队员从极狐门店走进整车工厂，同一辆车，在销售端和生产线上会遇到哪些不同的问题？行程里的这些观察，也是我们带进访谈的第一批问题。</p><a href="https://mp.weixin.qq.com/s/iaVNFRBHk9yqwUBpVx-aGw" target="_blank" rel="noopener">阅读北京调研微信原文 ↗</a></article>
+<article id="column-interviews"><h3>向“新”而谈</h3><p><strong>向受访者追问。</strong>加工前，哪些环节可以先模拟？带着走访中的疑问，听陈新松谈航空增材制造的验证，也听姚驰谈工业智能体落地时需要怎样的业务知识。访谈里的专业词，再交给《制造关键词》展开。</p><a href="journey.html#stop-02">走进陈新松的访谈 →</a></article>
+<article id="column-keywords"><h3>制造关键词</h3><p><strong>把概念讲明白。</strong>数字孪生、柔性制造、智能检测，这些词放回车间里各指什么？从访谈中挑出一个概念，用一段工序或一个订单变化讲清它，再回到《智行记》里的现场看它怎样发生。</p><a href="journey.html#stop-12">回到汽车生产现场 →</a></article>
+</div>
+        <button type="button" class="orbit-reset" hidden>↶ 查看三栏关系</button>
+      </div>
+      <div class="media-map" role="group" aria-label="选择媒体栏目"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"><line/><line/><line/></svg><button class="orbit-node" type="button" aria-pressed="false" aria-controls="column-journal"><img src="assets/web/column-journal.webp" alt=""><span>智行记</span></button><button class="orbit-node" type="button" aria-pressed="false" aria-controls="column-interviews"><img src="assets/web/column-interviews.webp" alt=""><span>向“新”而谈</span></button><button class="orbit-node" type="button" aria-pressed="false" aria-controls="column-keywords"><img src="assets/web/column-keywords.webp" alt=""><span>制造关键词</span></button></div>
     </div>
     <div class="media-foot"><div><h3>实践影像</h3><p>每日 Vlog 跟拍行程，访谈精华保留人物声音，实践纪实片《向新》串起两地的走访。</p></div>
     <a class="text-action" data-film="field" href="assets/web/field-film.mp4">观看《向新》 <span aria-hidden="true">▶</span></a></div>
@@ -69,7 +90,7 @@
 
   <section class="section cinema" id="film" aria-labelledby="film-title"><div class="section-intro"><h2 id="film-title">影像放映室</h2></div>
     <div class="films">
-      <article id="product-film"><a class="film-open" data-film="product" href="assets/web/product-film.mp4"><div class="still"><img loading="lazy" src="assets/web/product-film.webp" alt="铸衡智策产品宣传片画面"><span class="play" aria-hidden="true">▶</span><time>01:30</time></div><h3>产品宣传片</h3><p>跟随演示认识铸衡智策的决策与推演流程。</p><span class="watch">播放影片　→</span></a></article>
+      <article id="product-film"><a class="film-open" data-film="product" href="assets/web/product-film.mp4?v=brand2"><div class="still"><img loading="lazy" src="assets/web/product-film.webp?v=brand2" alt="铸衡智策产品宣传片画面"><span class="play" aria-hidden="true">▶</span><time>02:21</time></div><h3>产品宣传片</h3><p>跟随演示认识铸衡智策的决策与推演流程。</p><span class="watch">播放影片　→</span></a></article>
       <article id="theme-film"><a class="film-open" data-film="theme" href="assets/team-film.mp4"><div class="still"><img loading="lazy" src="assets/web/theme-film.webp" alt="智启新程主题宣传片画面"><span class="play" aria-hidden="true">▶</span><time>03:16</time></div><h3>实践主题篇</h3><p>从创新链、生产链与价值链理解团队的调研主题。</p><span class="watch">播放影片　→</span></a></article>
       <article id="field-film"><a class="film-open" data-film="field" href="assets/web/field-film.mp4"><div class="still"><img loading="lazy" src="assets/web/field-film.webp" alt="团队实践纪实片画面"><span class="play" aria-hidden="true">▶</span><time>03:27</time></div><h3>实践纪实片</h3><p>回到走访、座谈和记录发生的现场。</p><span class="watch">播放影片　→</span></a></article>
     </div>

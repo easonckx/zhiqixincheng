@@ -17,33 +17,45 @@ shots.forEach((button,index) => button.addEventListener('click', () => {
 }));
 
 
-const intro = document.querySelector('#intro');
-const motion = matchMedia('(prefers-reduced-motion: reduce)');
-if (intro && intro.showModal && !location.hash && !motion.matches && !navigator.connection?.saveData) {
-  let first = false;
-  try {
-    first = !sessionStorage.getItem('zq-team-film-v1');
-    if (first) sessionStorage.setItem('zq-team-film-v1','1');
-  } catch {}
-  if (first) {
-    const video = intro.querySelector('video');
-    const close = () => { if (intro.open) intro.close(); };
-    intro.showModal();
-    const deadline = setTimeout(close, 3000);
-    intro.querySelector('button').addEventListener('click',close,{once:true});
-    video.addEventListener('ended',close,{once:true});
-    video.addEventListener('error',close,{once:true});
-    window.addEventListener('pagehide',close,{once:true});
-    motion.addEventListener?.('change',close);
-    intro.addEventListener('close',()=>{
-      clearTimeout(deadline);
-      video.pause();
-      window.removeEventListener('pagehide',close);
-      motion.removeEventListener?.('change',close);
-    },{once:true});
-    video.muted = true;
-    video.src = 'assets/web/team-intro.mp4';
-    video.play().catch(close);
+(() => {
+  const intro=document.querySelector('#intro'), film=window.teamIntroVideo;
+  if(!film)return;
+  const root=document.documentElement, skip=intro.querySelector('button');
+  const remaining=window.teamIntroDeadline-performance.now();
+  root.classList.remove('intro-pending');
+  if(remaining<550 || document.hidden)return;
+  intro.querySelector('.intro-stage').prepend(film);
+  intro.showModal();
+  try { sessionStorage.setItem('zq-team-film-v2','1'); } catch {}
+  let exiting=false;
+  const motion=matchMedia('(prefers-reduced-motion: reduce)');
+  const finish=()=>{if(intro.open)intro.close()};
+  function leave(){
+    if(exiting || !intro.open)return;
+    exiting=true;
+    intro.classList.add('leaving');
+    setTimeout(finish,165);
   }
-}
+  const startup=setTimeout(leave,700);
+  const limit=setTimeout(leave,Math.max(0,remaining-165));
+  function checkFrame(){
+    if(exiting || !intro.open)return;
+    if(film.duration-film.currentTime<=.16){leave();return;}
+    if(film.requestVideoFrameCallback)film.requestVideoFrameCallback(checkFrame);
+  }
+  film.addEventListener('playing',()=>{clearTimeout(startup);checkFrame()},{once:true});
+  film.addEventListener('timeupdate',()=>{if(film.duration-film.currentTime<=.16)leave()});
+  film.addEventListener('error',leave,{once:true});
+  film.addEventListener('ended',leave,{once:true});
+  skip.addEventListener('click',leave,{once:true});
+  intro.addEventListener('cancel',e=>{e.preventDefault();leave()});
+  window.addEventListener('pagehide',finish,{once:true});
+  motion.addEventListener('change',leave);
+  intro.addEventListener('close',()=>{
+    clearTimeout(startup);clearTimeout(limit);film.pause();
+    window.removeEventListener('pagehide',finish);motion.removeEventListener('change',leave);
+  },{once:true});
+  film.play().catch(leave);
+})();
+
 if(location.hash==='#about')document.querySelector('#main').scrollIntoView();
