@@ -27,13 +27,10 @@
   function select(index) {
     clearTimeout(dwell);
     if(index === selected) return;
-    // Keep the entry footprint in page coordinates, independent of the
+    // Keep the entry footprint in viewport coordinates, independent of the
     // animated node. The label is clickable even outside the circle.
     entryBounds = mouseSelection && index >= 0
-      ? [nodes[index], nodes[index].querySelector('span')].map(el => {
-          const r = el.getBoundingClientRect();
-          return {left:r.left+scrollX, right:r.right+scrollX, top:r.top+scrollY, bottom:r.bottom+scrollY};
-        })
+      ? [nodes[index], nodes[index].querySelector('span')].map(el => el.getBoundingClientRect())
       : [];
     returning = index < 0 && !motion.matches;
     selected = index;
@@ -68,8 +65,8 @@
   let hoveredNode = null, returnTimer = 0, mouseSelection = false;
   let pointer = null, entryBounds = [], returning = false;
   function atEntry(){
-    if(!pointer)return false;
-    const x = pointer.x+scrollX, y = pointer.y+scrollY;
+    if(!pointer || !entryBounds.length || !layout.contains(currentTarget()))return false;
+    const {x,y} = pointer;
     return entryBounds.some(r => x >= r.left && x <= r.right && y >= r.top && y <= r.bottom);
   }
   function cancelReturn(){
