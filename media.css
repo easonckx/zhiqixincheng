@@ -40,3 +40,28 @@
 .media-copy [hidden],.orbit-reset[hidden]{display:none}
 .media-foot{border:0;margin-top:12px;padding-top:0}
 @media(max-width:740px){.media-layout{grid-template-columns:1fr;gap:4px;margin-top:16px;padding:12px 0 20px}.media-map{grid-row:1;max-width:500px;margin:auto}.media-copy{max-width:none}.media-copy h3{margin:8px 0}.orbit-node{width:clamp(65px,18vw,104px)}}
+
+
+.news-desk .press-heading{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:12px 28px;margin-bottom:clamp(22px,3vw,42px)}
+.news-desk .press-heading .text-action{margin:0}
+.news-columns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(30px,5vw,86px)}
+.news-column{min-width:0;border-top:2px solid var(--deep)}
+.news-column>h3{font-size:clamp(22px,2vw,32px);font-weight:650;line-height:1.35;margin:18px 0 14px}
+.news-column article{padding:17px 0 20px;border-top:1px solid var(--line)}
+.news-column h4{margin:7px 0 0;font-weight:600;font-size:clamp(17px,1.45vw,23px);line-height:1.5}
+.news-column h4 a:is(:hover,:focus-visible){text-decoration:underline;text-underline-offset:4px}
+.news-column h4 span{color:var(--blue);white-space:nowrap}
+.news-column p{margin:6px 0 0;color:var(--muted);font-size:15px;line-height:1.65}
+.news-column .press-byline{gap:5px 15px;flex-wrap:wrap}
+.news-more{border-top:1px solid var(--line)}
+.news-more summary{display:flex;align-items:center;gap:10px;width:fit-content;min-height:46px;color:var(--blue);font-weight:600;cursor:pointer;list-style:none}
+.news-more summary::-webkit-details-marker{display:none}
+.news-more summary i{width:8px;height:8px;border-right:1.5px solid;border-bottom:1.5px solid;transform:translateY(-2px) rotate(45deg);transition:transform .23s ease}
+.news-more[open] summary i{transform:translateY(2px) rotate(225deg)}
+.news-more:not([open]) .more-open,.news-more[open] .more-closed{display:none}
+@media(prefers-reduced-motion:no-preference){
+ .news-more[open] .news-archive{animation:news-appear .3s ease-out both}
+ @keyframes news-appear{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:translateY(0)}}
+ @supports (interpolate-size:allow-keywords){.news-more{interpolate-size:allow-keywords}.news-more::details-content{block-size:0;overflow:hidden;transition:block-size .32s ease,content-visibility .32s allow-discrete}.news-more[open]::details-content{block-size:auto}}
+}
+@media(max-width:740px){.news-columns{grid-template-columns:1fr;gap:28px}.news-column>h3{margin:14px 0}.news-column article{padding:14px 0 15px}}
