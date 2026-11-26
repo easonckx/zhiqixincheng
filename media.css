@@ -28,7 +28,7 @@
 .media-copy p{color:#465a69;font-size:clamp(15px,1.25vw,20px);line-height:1.8;margin:0 0 14px}
 .media-copy a,.orbit-reset{color:var(--blue);font-weight:600;text-decoration:underline;text-underline-offset:4px}
 .orbit-reset{background:transparent;border:0;cursor:pointer;padding:8px 0;font:inherit;color:#465a69;min-height:44px}
-.media-map{position:relative;width:100%;aspect-ratio:1.55;display:none}
+.media-map{position:relative;isolation:isolate;width:100%;aspect-ratio:1.55;display:none}
 .enhanced .media-map{display:block}
 .media-map svg{width:100%;height:100%;position:absolute;inset:0;overflow:visible}
 .media-map line{stroke:#8ea9bd;stroke-width:1.5;vector-effect:non-scaling-stroke}
